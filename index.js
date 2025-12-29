@@ -1,6 +1,6 @@
 
-import fetchCountries from './fetchCountries';
-import { listCountry, countryCard } from './templates';
+import fetchCountries from './fetchCountries.js';
+import { listCountry, countryCard } from './templates.js';
 
 
 
