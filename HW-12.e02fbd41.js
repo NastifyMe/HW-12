@@ -720,11 +720,6 @@ var _fetchCountriesDefault = parcelHelpers.interopDefault(_fetchCountries);
 var _templates = require("./templates");
 const inputCountry = document.querySelector('.inputCountry');
 const container = document.querySelector('.container');
-function showError(message) {
-    PNotify.error({
-        text: message
-    });
-}
 const debounceSearch = search;
 inputCountry.addEventListener('input', debounceSearch);
 function search(event) {
@@ -736,7 +731,7 @@ function search(event) {
     (0, _fetchCountriesDefault.default)(countryName).then((countries)=>{
         container.innerHTML = '';
         if (countries.length > 10) {
-            showError("\u0417\u0440\u043E\u0431\u0456\u0442\u044C \u0437\u0430\u043F\u0438\u0442 \u0431\u0456\u043B\u044C\u0448 \u0441\u043F\u0435\u0446\u0438\u0444\u0456\u0447\u043D\u0438\u043C");
+            console.log("\u0417\u0440\u043E\u0431\u0456\u0442\u044C \u0437\u0430\u043F\u0438\u0442 \u0431\u0456\u043B\u044C\u0448 \u0441\u043F\u0435\u0446\u0438\u0444\u0456\u0447\u043D\u0438\u043C");
             return;
         }
         if (countries.length >= 2) {
