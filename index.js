@@ -1,4 +1,4 @@
-import debounce from 'lodash.debounce';
+
 import fetchCountries from './fetchCountries';
 import { listCountry, countryCard } from './templates';
 import { error } from '@pnotify/core';
@@ -9,7 +9,7 @@ const inputCountry = document.querySelector('.inputCountry')
 const container = document.querySelector('.container')
 
 
-const debounceSearch = debounce(search, 500)
+const debounceSearch = search
 inputCountry.addEventListener('input', debounceSearch)
 
 function search(event) {
