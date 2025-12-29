@@ -715,12 +715,19 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"jOXmm":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _fetchCountries = require("./fetchCountries");
-var _fetchCountriesDefault = parcelHelpers.interopDefault(_fetchCountries);
-var _templates = require("./templates");
+var _fetchCountriesJs = require("./fetchCountries.js");
+var _fetchCountriesJsDefault = parcelHelpers.interopDefault(_fetchCountriesJs);
+var _templatesJs = require("./templates.js");
 const inputCountry = document.querySelector('.inputCountry');
 const container = document.querySelector('.container');
-const debounceSearch = search;
+function debounce(fn, delay) {
+    let timeoutId;
+    return function(...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(()=>fn.apply(this, args), delay);
+    };
+}
+const debounceSearch = debounce(search, 500);
 inputCountry.addEventListener('input', debounceSearch);
 function search(event) {
     const countryName = event.target.value.trim();
@@ -728,46 +735,36 @@ function search(event) {
         container.innerHTML = '';
         return;
     }
-    (0, _fetchCountriesDefault.default)(countryName).then((countries)=>{
+    (0, _fetchCountriesJsDefault.default)(countryName).then((countries)=>{
         container.innerHTML = '';
+        if (!countries || countries.length === 0) {
+            alert("\u041A\u0440\u0430\u0457\u043D\u0443 \u043D\u0435 \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u043E");
+            return;
+        }
         if (countries.length > 10) {
-            console.log("\u0417\u0440\u043E\u0431\u0456\u0442\u044C \u0437\u0430\u043F\u0438\u0442 \u0431\u0456\u043B\u044C\u0448 \u0441\u043F\u0435\u0446\u0438\u0444\u0456\u0447\u043D\u0438\u043C");
+            alert("\u0417\u0440\u043E\u0431\u0456\u0442\u044C \u0437\u0430\u043F\u0438\u0442 \u0431\u0456\u043B\u044C\u0448 \u0441\u043F\u0435\u0446\u0438\u0444\u0456\u0447\u043D\u0438\u043C");
             return;
         }
         if (countries.length >= 2) {
-            container.innerHTML = (0, _templates.listCountry)(countries);
+            container.innerHTML = (0, _templatesJs.listCountry)(countries);
             return;
         }
-        container.innerHTML = (0, _templates.countryCard)(countries[0]);
+        container.innerHTML = (0, _templatesJs.countryCard)(countries[0]);
     }).catch(()=>{
-        error({
-            text: "\u041A\u0440\u0430\u0457\u043D\u0443 \u043D\u0435 \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u043E"
-        });
+        alert("\u041A\u0440\u0430\u0457\u043D\u0443 \u043D\u0435 \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u043E");
     });
 }
 function countryClick(event) {
     if (!event.target.classList.contains('country-item')) return;
     const countryItem = event.target.dataset.name;
     inputCountry.value = countryItem;
-    (0, _fetchCountriesDefault.default)(countryItem).then((countries)=>{
-        container.innerHTML = (0, _templates.countryCard)(countries[0]);
+    (0, _fetchCountriesJsDefault.default)(countryItem).then((countries)=>{
+        container.innerHTML = (0, _templatesJs.countryCard)(countries[0]);
     });
 }
 container.addEventListener('click', countryClick);
 
-},{"./fetchCountries":"5oEsi","./templates":"g25GC","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"5oEsi":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "default", ()=>fetchCountries);
-function fetchCountries(countryName) {
-    const url = `https://restcountries.com/v2/name/${countryName}`;
-    return fetch(url).then((response)=>{
-        if (!response.ok) throw new Error('Country not found');
-        return response.json();
-    });
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","./fetchCountries.js":"5oEsi","./templates.js":"g25GC"}],"jnFvT":[function(require,module,exports,__globalThis) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -797,7 +794,19 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"g25GC":[function(require,module,exports,__globalThis) {
+},{}],"5oEsi":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>fetchCountries);
+function fetchCountries(countryName) {
+    const url = `https://restcountries.com/v2/name/${countryName}`;
+    return fetch(url).then((response)=>{
+        if (!response.ok) throw new Error('Country not found');
+        return response.json();
+    });
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"g25GC":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "listCountry", ()=>listCountry);
