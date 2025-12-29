@@ -7,9 +7,6 @@ import { listCountry, countryCard } from './templates';
 const inputCountry = document.querySelector('.inputCountry')
 const container = document.querySelector('.container')
 
-function showError(message) {
-    PNotify.error({ text: message })
-  }
 
 const debounceSearch = search
 
@@ -28,7 +25,7 @@ function search(event) {
             container.innerHTML = ''
 
             if (countries.length > 10) {
-                showError('Зробіть запит більш специфічним')
+                console.log('Зробіть запит більш специфічним')
                 return
               }
 
