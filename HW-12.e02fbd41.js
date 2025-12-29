@@ -207,11 +207,11 @@
       });
     }
   }
-})({"cCZRO":[function(require,module,exports,__globalThis) {
+})({"3h67W":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 52848;
+var HMR_SERVER_PORT = 53502;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -761,7 +761,7 @@ function countryClick(event) {
 }
 container.addEventListener('click', countryClick);
 
-},{"lodash.debounce":"6E59Q","./fetchCountries":"5oEsi","./templates":"g25GC","@pnotify/core":"kYWzq","@pnotify/core/dist/PNotify.css":"cEN1Y","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"6E59Q":[function(require,module,exports,__globalThis) {
+},{"lodash.debounce":"irvaP","./fetchCountries":"5oEsi","./templates":"g25GC","@pnotify/core":"fay4s","@pnotify/core/dist/PNotify.css":"c4y47","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"irvaP":[function(require,module,exports,__globalThis) {
 /**
  * lodash (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
@@ -1109,7 +1109,7 @@ function countryCard(country) {
     <img class="flag" src="${country.flag}" alt="">`;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"kYWzq":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"fay4s":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 !function(t, e) {
     e(exports);
@@ -3733,6 +3733,6 @@ var global = arguments[3];
     });
 });
 
-},{}],"cEN1Y":[function() {},{}]},["cCZRO","jOXmm"], "jOXmm", "parcelRequire3965", {})
+},{}],"c4y47":[function() {},{}]},["3h67W","jOXmm"], "jOXmm", "parcelRequire3965", {})
 
 //# sourceMappingURL=HW-12.e02fbd41.js.map
