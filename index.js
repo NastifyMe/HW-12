@@ -1,15 +1,18 @@
 
 import fetchCountries from './fetchCountries';
 import { listCountry, countryCard } from './templates';
-import { error } from '@pnotify/core';
-import '@pnotify/core/dist/PNotify.css';
+
 
 
 const inputCountry = document.querySelector('.inputCountry')
 const container = document.querySelector('.container')
 
+function showError(message) {
+    PNotify.error({ text: message })
+  }
 
 const debounceSearch = search
+
 inputCountry.addEventListener('input', debounceSearch)
 
 function search(event) {
@@ -24,12 +27,10 @@ function search(event) {
         .then(countries => {
             container.innerHTML = ''
 
-            if (countries.length > 10){
-                error({
-                    text: 'Зробіть запит більш специфічним'
-                })
+            if (countries.length > 10) {
+                showError('Зробіть запит більш специфічним')
                 return
-            }
+              }
 
             if (countries.length >= 2){
                 container.innerHTML = listCountry(countries)
